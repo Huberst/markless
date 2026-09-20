@@ -2,7 +2,7 @@
 > markless, however, this representation is important to understand the
 > principle. Therefore, the code examples in this README are provided as images.
 > You can find text based examples with syntax highlighting at
-> https://markless.net
+> https://huberst.github.io/markless/
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="page/assets/logo-dark.svg">
