@@ -2,7 +2,6 @@
 
 import { signal } from '@preact/signals-core'
 import type { MarkLess } from '../src/static-el-base.ts'
-import { AboutPage } from './about.ts'
 import { HomePage } from './home.ts'
 
 type TRoute = {
@@ -15,12 +14,15 @@ const homeRoute = {
   render: HomePage,
 } satisfies TRoute
 
-const aboutRoute = {
-  matchPath: (path: string) => path === '/about',
-  render: AboutPage,
-} satisfies TRoute
+// const aboutRoute = {
+//   matchPath: (path: string) => path === '/about',
+//   render: AboutPage,
+// } satisfies TRoute
 
-const routes = [homeRoute, aboutRoute]
+const routes = [
+  homeRoute,
+  // aboutRoute
+]
 
 const parseRoute = (route: string): TRoute => {
   const pickedRoute = routes.find((r) => r.matchPath(route))
