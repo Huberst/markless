@@ -25,6 +25,10 @@ export const menuWithIds = {
     href: '#Mission',
     title: 'The Mission',
   },
+  Install: {
+    href: '#Install',
+    title: 'How to install',
+  },
   Benefits: {
     href: '#Benefits',
     title: 'Benefits',
@@ -35,11 +39,11 @@ export const menuWithIds = {
   },
   Todo: {
     href: '#Todo',
-    title: 'Todo Example',
+    title: 'Todo example',
   },
   Mixing: {
     href: '#Mixing',
-    title: 'Mixing Reactive Sources',
+    title: 'Mixing reactive sources',
   },
 }
 

@@ -18,6 +18,14 @@ markless is a library which allows you to build UI for the browser, with a dev
 experience somewhat similar to React, but without having to leave or enhance
 TypeScript-Land.
 
+## How to install
+
+Add markless to a Deno project from JSR:
+
+```sh
+deno add jsr:@huberst/markless
+```
+
 ## The Mission: HTML-level scannability, pure TS
 
 The biggest hurdle was to achieve a visual distinction of HTML elements from the

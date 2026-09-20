@@ -2,7 +2,7 @@
   "name": "@huberst/markless",
   "license": "MIT",
   "exports": "./src/index.ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reactive UI components in plain TypeScript.",
   "compilerOptions": {
     "lib": ["dom", "es2024", "deno.ns", "deno.unstable"],

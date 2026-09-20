@@ -17,7 +17,7 @@ import {
   span,
   ul,
 } from '../src/index.ts'
-import { CodeBlockWithResult } from './code-block.ts'
+import { CodeBlock, CodeBlockWithResult } from './code-block.ts'
 import { Logo } from './logo.ts'
 import type { menuWithIds } from './main.ts'
 
@@ -40,6 +40,7 @@ export const HomePage = () =>
   component(
     (): MarkLess => [
       Hero(),
+
       h2._('The Mission: HTML-level scannability, pure TS'),
       p._(
         `
@@ -97,6 +98,10 @@ export const HomePage = () =>
         codeId: 'UsingElementsNesting',
         toRender: UsingElementsNesting,
       }),
+
+      Heading('Install', 'How to install'),
+      p._('Add markless to a Deno project from JSR:'),
+      CodeBlock('deno add jsr:@huberst/markless'),
 
       Heading('Benefits', 'What are the benefits of this approach?'),
       ul._(
