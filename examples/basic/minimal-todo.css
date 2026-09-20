@@ -1,0 +1,30 @@
+/* Minimal Todo example */
+
+.list-wrapper {
+  margin-top: 4rem;
+}
+
+.todo-list {
+
+  margin-bottom: 4rem;
+
+  li {
+
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+
+    list-style-type: none;
+    line-height: 1.5;
+
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.completed {
+    color: green;
+  }
+}

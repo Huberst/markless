@@ -1,0 +1,72 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**", "!**/node_modules/**"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "suspicious": {
+        "noAssignInExpressions": "warn"
+      },
+      "style": {
+        "useEnumInitializers": "off",
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "noUnusedTemplateLiteral": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error"
+      },
+      "recommended": true,
+      "complexity": {
+        "noForEach": "off",
+        "noStaticOnlyClass": "off",
+        "noThisInStatic": "off"
+      },
+      "a11y": {
+        "useKeyWithClickEvents": "off",
+        "noSvgWithoutTitle": "off",
+        "noStaticElementInteractions": "off"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "asNeeded"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["examples/basic/basic-usage.ts"],
+      "formatter": { "enabled": false },
+      "assist": { "actions": { "source": { "organizeImports": "off" } } }
+    },
+    {
+      "includes": ["generated/**"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noUnusedTemplateLiteral": "off"
+          }
+        }
+      }
+    }
+  ]
+}

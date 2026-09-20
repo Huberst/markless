@@ -1,0 +1,161 @@
+@import url('./page-examples.css');
+@import url('../../examples/basic/minimal-todo.css');
+
+:root {
+  --markless-logo-color-base: #c9c9c9;
+  --markless-logo-color-accent: #4fcab0;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--pico-background-color);
+}
+
+.hero {
+  scroll-margin-top: 16rem;
+}
+
+h2 {
+  scroll-margin-top: 6rem;
+}
+
+.path-base {
+  fill: var(--markless-logo-color-base);
+}
+
+.path-accent {
+  fill: var(--markless-logo-color-accent);
+}
+
+.plate {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+svg.markless-logo {
+  max-width: 540px;
+}
+
+svg:hover .plate {
+  transform: rotate(10deg) scale(0.8);
+}
+
+ul {
+  text-align: left;
+}
+
+
+
+.markless-logo {
+  --ml-shoot-down-duration: 150ms;
+  --ml-wiggle-duration: 300ms;
+  --ml-brackets-shake-duration: 100ms;
+
+  &.initial {
+    .dash {
+      transform: translate(70%, -100%);
+    }
+  }
+
+  &.animate {
+    .brackets-move {
+      transform-box: fill-box;
+      animation-delay: var(--ml-shoot-down-duration);
+      animation-name: brackets-shake;
+      animation-duration: var(--ml-brackets-shake-duration);
+      animation-timing-function: ease-in;
+    }
+
+    .dash {
+      transform-origin: bottom;
+
+      animation-name:
+        shoot-down,
+        wiggle;
+
+      animation-duration:
+        var(--ml-shoot-down-duration),
+        var(--ml-wiggle-duration);
+
+      animation-delay:
+        0ms,
+        var(--ml-shoot-down-duration);
+
+      animation-iteration-count:
+        1,
+        1;
+
+      /* make animation transform rotate value steps decrease by factor .3 with every iteration */
+      animation-direction:
+        normal,
+        alternate;
+
+      animation-timing-function:
+        linear, cubic-bezier(0.24, 1.53, 0.8, 0.6);
+
+      transform-box:
+        fill-box;
+
+      border: 1px solid var(--markless-logo-color-accent);
+    }
+  }
+}
+
+@keyframes brackets-shake {
+  50% {
+    transform: translate(0, 10%);
+  }
+}
+
+@keyframes shoot-down {
+  0% {
+    transform: translate(70%, -100%);
+  }
+}
+
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(7deg);
+  }
+
+  20% {
+    transform: rotate(-7deg);
+  }
+
+  30% {
+    transform: rotate(5deg);
+  }
+
+  40% {
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+
+  60% {
+    transform: rotate(-3deg);
+  }
+
+  70% {
+    transform: rotate(2deg);
+  }
+
+  80% {
+    transform: rotate(-2deg);
+  }
+
+  90% {
+    transform: rotate(1deg);
+  }
+}

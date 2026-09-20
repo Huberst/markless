@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>markless</title>
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%assets/markless-logo-small.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="./assets/main.css">
+  <style>
+    :root {
+      --class-highlight-color: #4EC9B0;
+      font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+      :root { font-size: 12px; }
+    }
+
+    .hero { text-align: center; padding: 4rem 1rem; }
+    .hero hgroup { margin-bottom: 2rem; }
+    .hero h1 { font-size: 3rem; }
+    .np-element {
+      display: inline-block;
+      color: var(--class-highlight-color);
+      font-weight: bold;
+      letter-spacing: .1rem;
+      animation: pulsate 2s infinite;
+      transform-origin: center;
+    }
+
+    @keyframes pulsate {
+      0% { transform: scale(1); filter: saturate(1); }
+      50% { transform: scale(1.1); filter: saturate(2.5); }
+      100% { transform: scale(1); filter: saturate(1); }
+    }
+  </style>
+  <script type="module" src="./main.ts"></script>
+</head>
+<body>
+</body>
+</html>

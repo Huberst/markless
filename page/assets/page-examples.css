@@ -1,0 +1,28 @@
+.code-block {
+  pre {
+    margin: 0;
+  }
+
+  margin-bottom: 1rem;
+}
+
+.code-block-example-result {
+  padding: 1rem;
+  background: rgb(35 43 61);
+  margin-bottom: 2rem;
+
+  button {
+    margin: 0 0.5rem 0.5rem 0;
+  }
+}
+
+.highlight {
+  color: var(--markless-logo-color-accent);
+}
+
+.search-with-suggestions-example {
+  input.odd {
+    color: var(--markless-logo-color-accent);
+  }
+
+}

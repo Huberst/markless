@@ -1,0 +1,25 @@
+import { defineStaticSvgTag } from './define-svg-tag.ts'
+
+export class svg extends defineStaticSvgTag('svg') {}
+export class circle extends defineStaticSvgTag('circle') {}
+export class ellipse extends defineStaticSvgTag('ellipse') {}
+export class rect extends defineStaticSvgTag('rect') {}
+export class line extends defineStaticSvgTag('line') {}
+export class polyline extends defineStaticSvgTag('polyline') {}
+export class polygon extends defineStaticSvgTag('polygon') {}
+export class path extends defineStaticSvgTag('path') {}
+export class g extends defineStaticSvgTag('g') {}
+export class use extends defineStaticSvgTag('use') {}
+export class defs extends defineStaticSvgTag('defs') {}
+export class svgSymbol extends defineStaticSvgTag('symbol') {}
+export class text extends defineStaticSvgTag('text') {}
+export class tspan extends defineStaticSvgTag('tspan') {}
+export class image extends defineStaticSvgTag('image') {}
+export class linearGradient extends defineStaticSvgTag('linearGradient') {}
+export class radialGradient extends defineStaticSvgTag('radialGradient') {}
+export class stop extends defineStaticSvgTag('stop') {}
+export class clipPath extends defineStaticSvgTag('clipPath') {}
+export class mask extends defineStaticSvgTag('mask') {}
+export class marker extends defineStaticSvgTag('marker') {}
+export class filter extends defineStaticSvgTag('filter') {}
+export class foreignObject extends defineStaticSvgTag('foreignObject') {}

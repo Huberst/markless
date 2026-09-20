@@ -1,0 +1,29 @@
+{
+  "name": "@huberst/markless",
+  "license": "MIT",
+  "exports": "./src/index.ts",
+  "compilerOptions": {
+    "lib": ["dom", "es2024", "deno.ns", "deno.unstable"],
+    "module": "esnext"
+  },
+  "nodeModulesDir": "auto",
+  "imports": {
+    "@deno/esbuild-plugin": "jsr:@deno/esbuild-plugin@^1.2.1",
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.2",
+    "@preact/signals-core": "npm:@preact/signals-core@^1.12.1",
+    "@types/lodash": "npm:@types/lodash@^4.17.23",
+    "esbuild": "npm:esbuild@^0.27.2",
+    "json-stringify-safe": "npm:json-stringify-safe@^5.0.1",
+    "lodash": "npm:lodash@^4.17.21",
+    "rxjs": "npm:rxjs@^7.8.2",
+    "shiki": "npm:shiki@^4.3.1",
+    "typescript": "npm:typescript@^6.0.2",
+    "vite": "npm:vite@^8.0.16"
+  },
+  "tasks": {
+    "vite": "deno run -N -S -R -E -W --allow-run --allow-ffi npm:vite",
+    "gen-elements": "deno run -A ./tools/gen-static-elements.ts",
+    "gen-example-strings": "deno run -A ./tools/gen-raw-exports.ts"
+  },
+  "unstable": ["bundle"]
+}
