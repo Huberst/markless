@@ -31,7 +31,7 @@ export class TextRenderer extends SubscriptionManager implements IRenderer {
     } else {
       this.#text.data = ''
       const unSub = this.passedText.subscribe((newStr) => {
-        this.#text.data = newStr ? newStr.toString() : ''
+        this.#text.data = newStr || newStr === 0 ? newStr.toString() : ''
       })
       this.addUnSubCb(() => unSub.unsubscribe())
     }
