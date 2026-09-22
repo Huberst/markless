@@ -10,12 +10,16 @@ export class DomElementEntity implements IElementEntity {
 
   appendTo(_parent: IElementEntity): void {}
 
+  /**
+   * Places (or, if already mounted, moves) the passed entity's DOM node(s)
+   * right after this entity's node, without destroying/recreating them.
+   */
   placeAfterSelf(passedElEntity: DomElementEntity): void {
     if (
       passedElEntity.owner instanceof ComponentRenderer &&
       !(this.owner instanceof ComponentRenderer)
     ) {
-      passedElEntity.owner.placeAfter(this.owner.el)
+      passedElEntity.owner.moveAfter(this.owner.el)
     }
   }
   remove() {
@@ -26,6 +30,7 @@ export class DomElementEntity implements IElementEntity {
 export interface IRenderer {
   create(renderCtx: IRenderCtx): void
   mountTo(toParent?: Element | DocumentFragment): void
+  moveAfter(anchor: ChildNode): ChildNode
   remove: () => void
 }
 

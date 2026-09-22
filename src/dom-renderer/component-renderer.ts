@@ -60,11 +60,24 @@ export class ComponentRenderer implements IRenderer {
     }
   }
 
-  public placeAfter(toPlaceAfter: Element | Comment): void {
-    if (this.mounted) {
-      throw new Error('ComponentRenderer already mounted, cannot placeAfter')
+  /**
+   * Places this component's node(s) right after `anchor` on first call.
+   * On later calls it repositions the existing (already-mounted) nodes
+   * instead of recreating them, preserving DOM identity (focus, selection, state).
+   */
+  public moveAfter(anchor: ChildNode): ChildNode {
+    if (!this.mounted) {
+      this.nested.forEach((n) => n.mountTo(this._frag))
+      const nodes = Array.from(this._frag.childNodes) as ChildNode[]
+      anchor.after(this._frag)
+      this.mounted = true
+      return nodes.length > 0 ? nodes[nodes.length - 1] : anchor
     }
-    this.nested.forEach((n) => n.mountTo(this._frag))
-    toPlaceAfter.after(this._frag)
+
+    let currentAnchor = anchor
+    this.nested.forEach((n) => {
+      currentAnchor = n.moveAfter(currentAnchor)
+    })
+    return currentAnchor
   }
 }

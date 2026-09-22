@@ -25,7 +25,6 @@ export const _EACH = <T>(
 ) => {
   let nextValues: T[] = []
   let nextKeys: string[] = []
-  let needsFullRemount = false
 
   const entityMap: TEachEntityMap<T> = new Map<string, TEachEntry<T>>()
   let entityArray: TEachEntry<T>[] = []
@@ -48,29 +47,25 @@ export const _EACH = <T>(
     })
   }
 
-  function clearMountedEntries() {
-    entityMap.forEach((e) => {
-      e.elEntity?.remove()
-      e.elEntity = undefined
-    })
-  }
-
   /**
    * UPDATE ELEMENTS
+   *
+   * Re-renders only entries that are new or whose entry instance changed
+   * (identified by key). Existing, unchanged entries keep their DOM identity
+   * and are only repositioned - never removed/recreated just to reorder them.
    */
   function updateElements() {
-    if (needsFullRemount) {
-      clearMountedEntries()
-    }
-
     removeDetachedEntries()
 
-    entityArray.reverse().forEach((e) => {
-      if (!e.elEntity) {
-        e.elEntity = rCtx.render(doFn(e.entry, e.idx), 'from _EACH doFn')
+    entityArray
+      .slice()
+      .reverse()
+      .forEach((e) => {
+        if (!e.elEntity) {
+          e.elEntity = rCtx.render(doFn(e.entry, e.idx), 'from _EACH doFn')
+        }
         hiddenDivEntity.placeAfterSelf(e.elEntity)
-      }
-    })
+      })
   }
 
   /**
@@ -79,8 +74,6 @@ export const _EACH = <T>(
   function remap() {
     const updated: TEachEntry<T>[] = []
     nextKeys = []
-    needsFullRemount = false
-    const hasMountedEntries = entityArray.some((entry) => entry.elEntity)
 
     nextValues.forEach((entry, index) => {
       const key = idxFn ? idxFn(entry, index) : grabKey(entry, index)
@@ -88,16 +81,15 @@ export const _EACH = <T>(
       const present = entityMap.get(key)
 
       if (present) {
-        if (present.idx !== index || present.entry !== entry) {
-          needsFullRemount = true
+        if (present.entry !== entry) {
+          // Entry instance swapped: re-render just this entry, leave others untouched.
+          present.elEntity?.remove()
+          present.elEntity = undefined
         }
         present.idx = index
         present.entry = entry
         updated.push(present)
       } else {
-        if (hasMountedEntries) {
-          needsFullRemount = true
-        }
         const toAdd: TEachEntry<T> = {
           idx: index,
           entry: entry,

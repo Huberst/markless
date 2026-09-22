@@ -41,4 +41,9 @@ export class CommentRenderer extends SubscriptionManager implements IRenderer {
       this.elD.lc.onMount.forEach((fn) => fn(this.domElEntity, this.renderCtx))
     }
   }
+
+  moveAfter(anchor: ChildNode): ChildNode {
+    anchor.after(this.#comment)
+    return this.#comment
+  }
 }

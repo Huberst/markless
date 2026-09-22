@@ -42,4 +42,9 @@ export class TextRenderer extends SubscriptionManager implements IRenderer {
       toParent.append(this.#text)
     }
   }
+
+  moveAfter(anchor: ChildNode): ChildNode {
+    anchor.after(this.#text)
+    return this.#text
+  }
 }

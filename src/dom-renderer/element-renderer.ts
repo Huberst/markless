@@ -129,4 +129,9 @@ export class ElementRenderer extends SubscriptionManager implements IRenderer {
       this.elD.lc.onMount.forEach((fn) => fn(this.domElEntity, this.renderCtx))
     }
   }
+
+  moveAfter(anchor: ChildNode): ChildNode {
+    anchor.after(this.el)
+    return this.el
+  }
 }
