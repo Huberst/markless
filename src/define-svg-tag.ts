@@ -2,9 +2,12 @@ import type { TReactive } from './reactive-adapters.ts'
 import {
   ElDescription,
   type MarkLess,
+  type PropertySet,
+  type PropertyValue,
   type TCanBeRendered,
   type TClassListEntry,
   type TElementTagName,
+  type WritablePropertyKey,
 } from './static-el-base.ts'
 
 const SVG_NAMESPACE = 'http://www.w3.org/2000/svg'
@@ -47,19 +50,23 @@ export function defineStaticSvgTag<Tag extends TSvgTagName>(tagName: Tag) {
       return this.inst.class(...(args as TClassListEntry[]))
     }
 
-    static attr(key: keyof ElT, value?: string | TReactive) {
-      return this.inst.attr(key as keyof ElT, value)
+    static attr(key: string, value?: string | TReactive) {
+      return this.inst.attr(key, value)
     }
 
-    static attrSet(attributes: Partial<Record<keyof ElT, string | TReactive>>) {
-      let elDesc = this.inst
-      for (const [key, value] of Object.entries(attributes) as [
-        keyof ElT,
-        string | TReactive,
-      ][]) {
-        elDesc = elDesc.attr(key, value)
-      }
-      return elDesc
+    static attrSet(attributes: Record<string, string | TReactive>) {
+      return this.inst.attrSet(attributes)
+    }
+
+    static prop<K extends WritablePropertyKey<ElT>>(
+      key: K,
+      value: PropertyValue<ElT, K>,
+    ) {
+      return this.inst.prop(key, value)
+    }
+
+    static propSet(properties: PropertySet<ElT>) {
+      return this.inst.propSet(properties)
     }
 
     static setRef(setRefCb: (ref: ElT) => void) {

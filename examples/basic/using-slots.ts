@@ -52,7 +52,7 @@ const Main = () =>
            The markless component compWithSlots is used to demonstrate how you can pass in different content for different slots (head and body in this case).`),
         button._('Close').event('click', () => { isOpenSig.value = false }),
       ])
-        .attr('open', isOpen),
+        .prop('open', isOpen),
 
       compWithSlots({
         head: h2._('This is the head slot content'),

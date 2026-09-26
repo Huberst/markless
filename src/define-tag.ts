@@ -3,8 +3,11 @@ import {
   ElDescription,
   type ExtendedHtmlElementTagNameMap,
   type MarkLess,
+  type PropertySet,
+  type PropertyValue,
   type TCanBeRendered,
   type TClassListEntry,
+  type WritablePropertyKey,
 } from './static-el-base.ts'
 
 type THtmlTagName = keyof ExtendedHtmlElementTagNameMap
@@ -42,19 +45,23 @@ export function defineStaticElementTag<Tag extends THtmlTagName>(tagName: Tag) {
       return this.inst.setRef(setRefCb)
     }
 
-    static attr(key: keyof ElT, value?: string | TReactive) {
+    static attr(key: string, value?: string | TReactive) {
       return this.inst.attr(key, value)
     }
 
-    static attrSet(attributes: Partial<Record<keyof ElT, string | TReactive>>) {
-      let elDesc = this.inst
-      for (const [key, value] of Object.entries(attributes) as [
-        keyof ElT,
-        string | TReactive,
-      ][]) {
-        elDesc = elDesc.attr(key, value)
-      }
-      return elDesc
+    static attrSet(attributes: Record<string, string | TReactive>) {
+      return this.inst.attrSet(attributes)
+    }
+
+    static prop<K extends WritablePropertyKey<ElT>>(
+      key: K,
+      value: PropertyValue<ElT, K>,
+    ) {
+      return this.inst.prop(key, value)
+    }
+
+    static propSet(properties: PropertySet<ElT>) {
+      return this.inst.propSet(properties)
     }
 
     static afterMount(fn: Parameters<ElDescription<ElT>['afterMount']>[0]) {

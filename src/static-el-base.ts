@@ -39,6 +39,27 @@ export type TReactiveClassListEntry = IReactiveAdapter<
 
 type TRenderLifecycleFn = (elE: IElementEntity, rCtx: IRenderCtx) => void
 
+type SameType<A, B> =
+  (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2
+    ? true
+    : false
+
+export type WritablePropertyKey<T> = {
+  [K in keyof T]-?: T[K] extends (...args: any[]) => unknown
+    ? never
+    : SameType<Pick<T, K>, { -readonly [P in K]: T[P] }> extends true
+      ? K
+      : never
+}[keyof T]
+
+export type PropertyValue<T, K extends keyof T> =
+  | T[K]
+  | IReactiveAdapter<T[K]>
+
+export type PropertySet<T> = {
+  [K in WritablePropertyKey<T>]?: PropertyValue<T, K>
+}
+
 /**
  * El Description Class.
  * Used to store everything that got passed to an StaticElWrapperBase extending class.
@@ -62,10 +83,9 @@ export class ElDescription<
 
   public eventHandlers = new Map<string, (event: any) => void>()
 
-  public attributes = new Map<
-    keyof ConHTMLElType,
-    string | TReactive | undefined
-  >()
+  public attributes = new Map<string, string | TReactive | undefined>()
+
+  public properties = new Map<WritablePropertyKey<ConHTMLElType>, unknown>()
 
   public classes: (TReactiveClassListEntry | string)[] = []
 
@@ -110,25 +130,35 @@ export class ElDescription<
     return this
   }
 
-  public attr(key: keyof ConHTMLElType, value?: string | TReactive) {
+  public attr(key: string, value?: string | TReactive) {
     this.attributes.set(key, value)
     return this
   }
 
-  public attrSet(
-    attributes: Partial<Record<keyof ConHTMLElType, string | TReactive>>,
-  ) {
-    for (const [key, value] of Object.entries(attributes) as [
-      keyof ConHTMLElType,
-      string | TReactive,
-    ][]) {
+  public attrSet(attributes: Record<string, string | TReactive>) {
+    for (const [key, value] of Object.entries(attributes)) {
       this.attr(key, value)
     }
     return this
   }
 
   public dataAttr(key: string, value?: string | TReactive) {
-    return this.attr(`data-${key}` as keyof ConHTMLElType, value)
+    return this.attr(`data-${key}`, value)
+  }
+
+  public prop<K extends WritablePropertyKey<ConHTMLElType>>(
+    key: K,
+    value: PropertyValue<ConHTMLElType, K>,
+  ) {
+    this.properties.set(key, value)
+    return this
+  }
+
+  public propSet(properties: PropertySet<ConHTMLElType>) {
+    for (const [key, value] of Object.entries(properties)) {
+      this.properties.set(key as WritablePropertyKey<ConHTMLElType>, value)
+    }
+    return this
   }
 
   public setRef(setRefCb: (ref: ConHTMLElType) => void) {

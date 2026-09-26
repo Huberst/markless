@@ -49,7 +49,7 @@ const DialogWrapper = component((rCtx) => {
     console.log('cleanup dialog example: listener removed, body class cleared')
   })
 
-  return dialog.attr('open', isOpen)._([
+  return dialog.prop('open', isOpen)._([
     h2._('Dialog owned by a component'),
     SomethingWithCleanup(),
     p._(

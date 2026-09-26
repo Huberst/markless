@@ -78,6 +78,12 @@ are driven by reactive adapters, which can be build on top of any reactive
 source you like. Reactive adapters for preact signals and RxJS are already
 included. They are easy to integrate.
 
+Use `.prop('value', value)` or `.propSet({ checked: true })` to assign DOM
+properties (including reactive values). Use `.attr('aria-label', 'Close')` or
+`.attrSet({ viewBox: '0 0 100 100' })` for HTML and SVG attributes. Property
+names and values are checked against the element's DOM type; attribute names
+are strings because TypeScript's DOM types do not list attributes by tag.
+
 ![ReactiveColorSelection](page/assets/ReactiveColorSelection.png)
 
 ## Of course there is a todo app example 🙄

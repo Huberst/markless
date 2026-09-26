@@ -23,7 +23,7 @@ export class ElementRenderer extends SubscriptionManager implements IRenderer {
 
   private domElEntity = new DomElementEntity(this)
 
-  constructor(private elD: ElDescription) {
+  constructor(private elD: ElDescription<any>) {
     super()
   }
 
@@ -54,6 +54,7 @@ export class ElementRenderer extends SubscriptionManager implements IRenderer {
     this.setupEventHandlers()
     this.setupClasses()
     this.setupAttributes()
+    this.setupProperties()
 
     this.elD.lc.setRef.forEach((setRefCb) => {
       setRefCb(this.el)
@@ -114,6 +115,21 @@ export class ElementRenderer extends SubscriptionManager implements IRenderer {
       } else {
         // Static attribute without value (e.g. hidden)
         this.el.setAttribute(key, attr || '')
+      }
+    })
+  }
+
+  private setupProperties() {
+    this.elD.properties.forEach((value, key) => {
+      const setProperty = (nextVal: unknown) => {
+        ;(this.el as unknown as Record<string, unknown>)[key as string] =
+          nextVal
+      }
+      if (isReactiveAdapter(value)) {
+        const unSub = value.subscribe(setProperty)
+        this.addUnSubCb(() => unSub.unsubscribe())
+      } else {
+        setProperty(value)
       }
     })
   }
