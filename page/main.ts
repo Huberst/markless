@@ -33,6 +33,10 @@ export const menuWithIds = {
     href: '#Benefits',
     title: 'Benefits',
   },
+  ElementAPI: {
+    href: '#ElementAPI',
+    title: 'Element API',
+  },
   Reactivity: {
     href: '#Reactivity',
     title: 'Reactivity',

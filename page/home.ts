@@ -7,6 +7,7 @@ import { SearchWithSuggestions } from '../examples/basic/main-page-example.ts'
 import { MinimalTodo } from '../examples/basic/minimal-todo.ts'
 import {
   _EACH,
+  code,
   component,
   h2,
   hgroup,
@@ -15,6 +16,7 @@ import {
   p,
   section,
   span,
+  strong,
   ul,
 } from '../src/index.ts'
 import { CodeBlock, CodeBlockWithResult } from './code-block.ts'
@@ -117,11 +119,60 @@ export const HomePage = () =>
         ]).DO((item) => li._(item)),
       ),
 
+      Heading('ElementAPI', 'Element API'),
+      ul._(
+        li._(
+          strong._('Content: '),
+          code._('._(...)'),
+          ' adds text, elements, and components as children.',
+        ),
+        li._(
+          strong._('Properties: '),
+          code._(".prop('value', value)"),
+          ' and ',
+          code._('.propSet({ checked: true })'),
+          ` assign DOM properties, including reactive values. Names and values
+          are checked against the element's DOM type.`,
+        ),
+        li._(
+          strong._('Attributes: '),
+          code._(".attr('aria-label', 'Close')"),
+          ' and ',
+          code._(".attrSet({ viewBox: '0 0 100 100' })"),
+          ` set HTML or SVG attributes, including reactive values. Attribute
+          names are strings because TypeScript's DOM types do not list attributes
+          by tag. On an element description, `,
+          code._(".dataAttr('state', 'open')"),
+          ' is shorthand for ',
+          code._('data-state'),
+          '.',
+        ),
+        li._(
+          strong._('Appearance: '),
+          code._(".class('active', activeClass)"),
+          ' adds static or reactive classes. ',
+          code._(".style({ color: 'red' })"),
+          ` sets inline styles; a reactive style object also removes declarations
+          that disappear on subsequent updates.`,
+        ),
+        li._(
+          strong._('Interaction and lifecycle: '),
+          code._(".event('click', handler)"),
+          ' registers a handler; ',
+          code._('.setRef(callback)'),
+          ' provides a typed DOM element reference. ',
+          code._('.afterMount(callback)'),
+          ' and ',
+          code._('.onRemove(callback)'),
+          ' run on mounting and removal.',
+        ),
+      ),
+
       Heading('Reactivity', 'But what about reactivity?'),
 
       p._(`
         markless components never 're-render' in the sense of React or Vue.
-        All updates are driven by reactive adapters, which can be build on top of
+        All updates are driven by reactive adapters, which can be built on top of
         any reactive source you like. Reactive adapters for preact signals and RxJS
         are already included. They are easy to integrate.
       `),

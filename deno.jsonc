@@ -24,6 +24,7 @@
     "vite": "deno run -N -S -R -E -W --allow-run --allow-ffi npm:vite",
     "bundle": "deno run -A ./tools/bundle.ts",
     "gen-elements": "deno run -A ./tools/gen-static-elements.ts",
-    "gen-example-strings": "deno run -A ./tools/gen-raw-exports.ts"
+    "gen-example-strings": "deno run -A ./tools/gen-raw-exports.ts",
+    "gen-readme-examples": "deno task gen-example-strings && deno run -A ./tools/gen-readme-examples.ts"
   }
 }

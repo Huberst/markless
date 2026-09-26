@@ -1,8 +1,8 @@
-> ⚠️ Semantic highlighting is not possible in Markdown code blocks. For
-> markless, however, this representation is important to understand the
-> principle. Therefore, the code examples in this README are provided as images.
-> You can find text based examples with syntax highlighting at
-> https://huberst.github.io/markless/
+> Markdown code blocks cannot show markless's element highlighting. The examples
+> below are generated SVGs from the same TypeScript sources as the
+> [interactive examples on the home page](https://huberst.github.io/markless/).
+> After changing an example, run `deno task gen-readme-examples` to refresh both
+> versions.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="page/assets/logo-dark.svg">
@@ -57,9 +57,9 @@ so they are easy to spot for your eyes. In VS Code Dark Modern, for example,
 they are colored in a green or almost turquoise color, which is also used for
 type information.
 
-![UsingElements](page/assets/UsingElements.png)
+![UsingElements TypeScript example](page/assets/UsingElements.svg)
 
-![UsingElementsNesting](page/assets/UsingElementsNesting.png)
+![UsingElementsNesting TypeScript example](page/assets/UsingElementsNesting.svg)
 
 ### What are the benefits of this approach?
 
@@ -71,30 +71,40 @@ type information.
 - No virtual DOM.
 - No magic.
 
+## Element API
+
+- **Content:** `._(...)` adds text, elements, and components as children.
+- **Properties:** `.prop('value', value)` and `.propSet({ checked: true })`
+  assign DOM properties, including reactive values. Names and values are checked
+  against the element's DOM type.
+- **Attributes:** `.attr('aria-label', 'Close')` and
+  `.attrSet({ viewBox: '0 0 100 100' })` set HTML or SVG attributes, including
+  reactive values. Attribute names are strings because TypeScript's DOM types do
+  not list attributes by tag. On an element description,
+  `.dataAttr('state', 'open')` is shorthand for `data-state`.
+- **Appearance:** `.class('active', activeClass)` adds static or reactive classes.
+  `.style({ color: 'red' })` sets inline styles; a reactive style object also
+  removes declarations that disappear on subsequent updates.
+- **Interaction and lifecycle:** `.event('click', handler)` registers a handler;
+  `.setRef(callback)` provides a typed DOM element reference.
+  `.afterMount(callback)` and `.onRemove(callback)` run on mounting and removal.
+
 ## But what about reactivity?
 
 markless components never 're-render' in the sense of React or Vue. All updates
-are driven by reactive adapters, which can be build on top of any reactive
+are driven by reactive adapters, which can be built on top of any reactive
 source you like. Reactive adapters for preact signals and RxJS are already
 included. They are easy to integrate.
 
-Use `.prop('value', value)` or `.propSet({ checked: true })` to assign DOM
-properties (including reactive values). Use `.attr('aria-label', 'Close')` or
-`.attrSet({ viewBox: '0 0 100 100' })` for HTML and SVG attributes. Property
-names and values are checked against the element's DOM type; attribute names
-are strings because TypeScript's DOM types do not list attributes by tag.
-For inline styles, use `.style({ color: 'red' })`; reactive style objects also
-remove declarations that disappear on subsequent updates.
-
-![ReactiveColorSelection](page/assets/ReactiveColorSelection.png)
+![ReactiveColorSelection TypeScript example](page/assets/ReactiveColorSelection.svg)
 
 ## Of course there is a todo app example 🙄
 
-![MinimalTodo](page/assets/MinimalTodo.png)
+![MinimalTodo TypeScript example](page/assets/MinimalTodo.svg)
 
 ## Mixing multiple reactive sources
 
-![SearchWithSuggestions](page/assets/SearchWithSuggestions.png)
+![SearchWithSuggestions TypeScript example](page/assets/SearchWithSuggestions.svg)
 
 ## License
 

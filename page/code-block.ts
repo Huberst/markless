@@ -1,11 +1,7 @@
 import { createHighlighter } from 'shiki'
-import {
-  component,
-  div,
-  type MarkLess,
-  SUPPORTED_HTML_TAGS,
-} from '../src/index.ts'
+import { component, div, type MarkLess } from '../src/index.ts'
 import { rawExamples } from './generated/__generated-examples.ts'
+import { isMarklessElement } from './element-highlight.ts'
 
 const DARK_THEME = 'dark-plus'
 
@@ -13,14 +9,6 @@ const highlighterPromise = createHighlighter({
   themes: ['dark-plus'],
   langs: ['typescript'],
 })
-
-const tagsToIgnoreHighlighting = ['body', 'map']
-
-// VS Code Dark Modern semantic class color — applied to known markless element identifiers
-// since Shiki only has syntactic tokens (no TS language server semantic info).
-const marklessHighlightElements = new Set(
-  SUPPORTED_HTML_TAGS.filter((tag) => !tagsToIgnoreHighlighting.includes(tag)),
-)
 
 export const CodeBlock = (example: string) =>
   component((): MarkLess => {
@@ -34,7 +22,7 @@ export const CodeBlock = (example: string) =>
               span(node) {
                 const firstChild = node.children[0]
                 if (!firstChild || firstChild.type !== 'text') return
-                if (marklessHighlightElements.has(firstChild.value.trim())) {
+                if (isMarklessElement(firstChild.value)) {
                   node.properties.style = undefined
                   node.properties.class = 'np-element'
                 }
