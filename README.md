@@ -1,8 +1,9 @@
-> Markdown code blocks cannot show markless's element highlighting. The examples
-> below are generated SVGs from the same TypeScript sources as the
-> [interactive examples on the home page](https://huberst.github.io/markless/).
-> After changing an example, run `deno task gen-readme-examples` to refresh both
-> versions.
+> ⚠️ One main goal of markless is to make HTML elements visually distinct in TypeScript code.
+> This is achieved with semantic TypeScript highlighting in your IDE.
+> Unfortunately, this cannot be rendered in standard Markdown code blocks.
+> Therefore the examples in this README are generated as SVGs.
+> [interactive, text based examples can be found here](https://huberst.github.io/markless/).
+
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Huberst/markless/main/page/assets/logo-dark.svg">
