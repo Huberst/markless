@@ -12,11 +12,8 @@ type THtmlTagName = keyof ExtendedHtmlElementTagNameMap
 type THtmlElForTag<Tag extends THtmlTagName> =
   ExtendedHtmlElementTagNameMap[Tag]
 
-export function defineStaticElementTag<Tag extends THtmlTagName, FT>(
-  tagName: Tag,
-  _fixType?: FT,
-) {
-  type ElT = FT extends unknown ? THtmlElForTag<Tag> : FT
+export function defineStaticElementTag<Tag extends THtmlTagName>(tagName: Tag) {
+  type ElT = THtmlElForTag<Tag>
 
   return class StaticHtmlTag {
     static readonly elName = tagName
@@ -85,5 +82,5 @@ export function defineStaticElementTag<Tag extends THtmlTagName, FT>(
   }
 }
 
-export class comment extends defineStaticElementTag('comment', Comment) {}
-export class text extends defineStaticElementTag('text', Text) {}
+export class comment extends defineStaticElementTag('comment') {}
+export class text extends defineStaticElementTag('text') {}

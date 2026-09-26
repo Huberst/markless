@@ -28,29 +28,21 @@ try {
 
 function emitDeclarations() {
   const program = ts.createProgram({
-    rootNames: ['./src/index.ts', './generated/__generated-static-elements.ts'],
+    rootNames: ['./src/index.ts'],
     options: {
+      allowImportingTsExtensions: true,
       declaration: true,
       declarationDir: './dist',
       emitDeclarationOnly: true,
       lib: ['lib.dom.d.ts', 'lib.es2024.d.ts'],
       module: ts.ModuleKind.NodeNext,
       moduleResolution: ts.ModuleResolutionKind.NodeNext,
-      rewriteRelativeImportExtensions: true,
       rootDir: '.',
       target: ts.ScriptTarget.ES2022,
     },
   })
 
-  const result = program.emit(undefined, (fileName, content) => {
-    const declaration = content.replace(
-      /((?:from|import)\s*['"][./][^'"]+)\.ts(['"])/g,
-      '$1.js$2',
-    )
-    const directory = fileName.slice(0, fileName.lastIndexOf('/'))
-    Deno.mkdirSync(directory, { recursive: true })
-    Deno.writeTextFileSync(fileName, declaration)
-  })
+  const result = program.emit()
   const diagnostics = ts
     .getPreEmitDiagnostics(program)
     .concat(result.diagnostics)
