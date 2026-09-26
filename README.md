@@ -5,12 +5,10 @@
 > versions.
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="page/assets/logo-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="page/assets/logo-light.svg">
-  <img alt="MarkLessLogo" src="page/assets/logo-light.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Huberst/markless/main/page/assets/logo-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Huberst/markless/main/page/assets/logo-light.svg">
+  <img alt="MarkLessLogo" src="https://raw.githubusercontent.com/Huberst/markless/main/page/assets/logo-light.svg">
 </picture>
-
-<!-- ![MarkLessLogo](page/assets/logo-dark.svg) -->
 
 **Plain TypeScript - Reactive - UI Components**
 
@@ -57,9 +55,9 @@ so they are easy to spot for your eyes. In VS Code Dark Modern, for example,
 they are colored in a green or almost turquoise color, which is also used for
 type information.
 
-![UsingElements TypeScript example](page/assets/UsingElements.svg)
+![UsingElements TypeScript example](https://raw.githubusercontent.com/Huberst/markless/main/page/assets/UsingElements.svg)
 
-![UsingElementsNesting TypeScript example](page/assets/UsingElementsNesting.svg)
+![UsingElementsNesting TypeScript example](https://raw.githubusercontent.com/Huberst/markless/main/page/assets/UsingElementsNesting.svg)
 
 ### What are the benefits of this approach?
 
@@ -96,16 +94,16 @@ are driven by reactive adapters, which can be built on top of any reactive
 source you like. Reactive adapters for preact signals and RxJS are already
 included. They are easy to integrate.
 
-![ReactiveColorSelection TypeScript example](page/assets/ReactiveColorSelection.svg)
+![ReactiveColorSelection TypeScript example](https://raw.githubusercontent.com/Huberst/markless/main/page/assets/ReactiveColorSelection.svg)
 
 ## Of course there is a todo app example 🙄
 
-![MinimalTodo TypeScript example](page/assets/MinimalTodo.svg)
+![MinimalTodo TypeScript example](https://raw.githubusercontent.com/Huberst/markless/main/page/assets/MinimalTodo.svg)
 
 ## Mixing multiple reactive sources
 
-![SearchWithSuggestions TypeScript example](page/assets/SearchWithSuggestions.svg)
+![SearchWithSuggestions TypeScript example](https://raw.githubusercontent.com/Huberst/markless/main/page/assets/SearchWithSuggestions.svg)
 
 ## License
 
-[MIT](LICENSE) © 2026 Stefan Huber
+[MIT](https://github.com/Huberst/markless/blob/main/LICENSE) © 2026 Stefan Huber

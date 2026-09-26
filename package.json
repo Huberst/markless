@@ -3,6 +3,12 @@
   "version": "0.1.2",
   "description": "Reactive UI components in plain TypeScript.",
   "license": "MIT",
+  "homepage": "https://huberst.github.io/markless/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huberst/markless.git"
+  },
+  "bugs": "https://github.com/Huberst/markless/issues",
   "type": "module",
   "main": "./dist/bundle.js",
   "module": "./dist/bundle.js",
