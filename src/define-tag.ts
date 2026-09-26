@@ -1,4 +1,4 @@
-import type { TReactive } from './reactive-adapters.ts'
+import type { IReactiveAdapter, TReactive } from './reactive-adapters.ts'
 import {
   ElDescription,
   type ExtendedHtmlElementTagNameMap,
@@ -7,6 +7,7 @@ import {
   type PropertyValue,
   type TCanBeRendered,
   type TClassListEntry,
+  type TStyle,
   type WritablePropertyKey,
 } from './static-el-base.ts'
 
@@ -62,6 +63,10 @@ export function defineStaticElementTag<Tag extends THtmlTagName>(tagName: Tag) {
 
     static propSet(properties: PropertySet<ElT>) {
       return this.inst.propSet(properties)
+    }
+
+    static style(value: TStyle | IReactiveAdapter<TStyle>) {
+      return this.inst.style(value)
     }
 
     static afterMount(fn: Parameters<ElDescription<ElT>['afterMount']>[0]) {

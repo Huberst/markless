@@ -60,6 +60,12 @@ export type PropertySet<T> = {
   [K in WritablePropertyKey<T>]?: PropertyValue<T, K>
 }
 
+export type TStyle = {
+  -readonly [K in keyof CSSStyleDeclaration as K extends string
+    ? CSSStyleDeclaration[K] extends string ? K : never
+    : never]?: string
+} & { [K in `--${string}`]?: string }
+
 /**
  * El Description Class.
  * Used to store everything that got passed to an StaticElWrapperBase extending class.
@@ -86,6 +92,8 @@ export class ElDescription<
   public attributes = new Map<string, string | TReactive | undefined>()
 
   public properties = new Map<WritablePropertyKey<ConHTMLElType>, unknown>()
+
+  public styles?: TStyle | IReactiveAdapter<TStyle>
 
   public classes: (TReactiveClassListEntry | string)[] = []
 
@@ -158,6 +166,11 @@ export class ElDescription<
     for (const [key, value] of Object.entries(properties)) {
       this.properties.set(key as WritablePropertyKey<ConHTMLElType>, value)
     }
+    return this
+  }
+
+  public style(value: TStyle | IReactiveAdapter<TStyle>) {
+    this.styles = value
     return this
   }
 

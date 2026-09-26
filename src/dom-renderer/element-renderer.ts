@@ -54,6 +54,7 @@ export class ElementRenderer extends SubscriptionManager implements IRenderer {
     this.setupEventHandlers()
     this.setupClasses()
     this.setupAttributes()
+    this.setupStyles()
     this.setupProperties()
 
     this.elD.lc.setRef.forEach((setRefCb) => {
@@ -117,6 +118,40 @@ export class ElementRenderer extends SubscriptionManager implements IRenderer {
         this.el.setAttribute(key, attr || '')
       }
     })
+  }
+
+  private setupStyles() {
+    const styles = this.elD.styles
+    if (!styles) return
+
+    const el = this.el as HTMLElement | SVGElement
+    let previousKeys = new Set<string>()
+    const patchStyles = (nextStyles: Record<string, string | undefined>) => {
+      const nextKeys = new Set<string>()
+      for (const [key, value] of Object.entries(nextStyles)) {
+        if (value === undefined) continue
+        nextKeys.add(key)
+      }
+
+      for (const key of previousKeys) {
+        if (nextKeys.has(key)) continue
+        if (key.includes('-')) el.style.removeProperty(key)
+        else (el.style as unknown as Record<string, string>)[key] = ''
+      }
+      for (const key of nextKeys) {
+        const value = nextStyles[key]!
+        if (key.includes('-')) el.style.setProperty(key, value)
+        else (el.style as unknown as Record<string, string>)[key] = value
+      }
+      previousKeys = nextKeys
+    }
+
+    if (isReactiveAdapter<Record<string, string | undefined>>(styles)) {
+      const unSub = styles.subscribe(patchStyles)
+      this.addUnSubCb(() => unSub.unsubscribe())
+    } else {
+      patchStyles(styles)
+    }
   }
 
   private setupProperties() {

@@ -83,6 +83,8 @@ properties (including reactive values). Use `.attr('aria-label', 'Close')` or
 `.attrSet({ viewBox: '0 0 100 100' })` for HTML and SVG attributes. Property
 names and values are checked against the element's DOM type; attribute names
 are strings because TypeScript's DOM types do not list attributes by tag.
+For inline styles, use `.style({ color: 'red' })`; reactive style objects also
+remove declarations that disappear on subsequent updates.
 
 ![ReactiveColorSelection](page/assets/ReactiveColorSelection.png)
 

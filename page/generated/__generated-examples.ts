@@ -30,7 +30,7 @@ const NestedHighlight = (text: string, color: string) =>
   component(
     (): MarkLess =>
       p
-        .attrSet({ style: styles({ color }) })
+        .style({ color })
         ._(text),
   )
 
@@ -60,7 +60,7 @@ export const ReactiveColorSelection = component((): MarkLess => {
 
   const [selectedColorRA, selectedColorSig] = toRA(signal<string | null>(null))
   const [selectedColorStyleRA] = toRA(
-    computed(() => \`color: \${selectedColorSig.value ?? 'white'};\`),
+    computed(() => ({ color: selectedColorSig.value ?? 'white' })),
   )
 
   function pickColor(color: string) {
@@ -68,8 +68,8 @@ export const ReactiveColorSelection = component((): MarkLess => {
   }
 
   return [
-    h3 // Passing a reactive adapter to an element's attribute makes it reactive.
-      .attrSet({ style: selectedColorStyleRA })
+    h3 // Passing a reactive adapter to .style() makes it reactive.
+      .style(selectedColorStyleRA)
       ._('Select a color'),
 
     // Use _EACH to render a list of items. We pass a normal array here, but you

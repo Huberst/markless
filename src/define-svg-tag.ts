@@ -1,4 +1,4 @@
-import type { TReactive } from './reactive-adapters.ts'
+import type { IReactiveAdapter, TReactive } from './reactive-adapters.ts'
 import {
   ElDescription,
   type MarkLess,
@@ -7,6 +7,7 @@ import {
   type TCanBeRendered,
   type TClassListEntry,
   type TElementTagName,
+  type TStyle,
   type WritablePropertyKey,
 } from './static-el-base.ts'
 
@@ -67,6 +68,10 @@ export function defineStaticSvgTag<Tag extends TSvgTagName>(tagName: Tag) {
 
     static propSet(properties: PropertySet<ElT>) {
       return this.inst.propSet(properties)
+    }
+
+    static style(value: TStyle | IReactiveAdapter<TStyle>) {
+      return this.inst.style(value)
     }
 
     static setRef(setRefCb: (ref: ElT) => void) {
