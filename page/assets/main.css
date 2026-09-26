@@ -13,6 +13,10 @@ header {
   background-color: var(--pico-background-color);
 }
 
+nav ul {
+  align-items: start;
+}
+
 nav ul li {
   padding: 0.4rem;
 }
