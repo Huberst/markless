@@ -7,6 +7,7 @@ import { SearchWithSuggestions } from '../examples/basic/main-page-example.ts'
 import { MinimalTodo } from '../examples/basic/minimal-todo.ts'
 import {
   _EACH,
+  a,
   code,
   component,
   h2,
@@ -32,6 +33,11 @@ const Hero = () =>
           Logo(),
           p._("Plain TypeScript - Reactive - UI Components"),
         ]),
+        p._(
+          a.attr('href', 'https://github.com/Huberst/markless')._(
+            'View on GitHub',
+          ),
+        ),
       ]),
   )
 
