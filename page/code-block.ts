@@ -1,11 +1,11 @@
 import { createHighlighter } from 'shiki'
-import { rawExamples } from '../generated/__generated-examples.ts'
 import {
   component,
   div,
   type MarkLess,
   SUPPORTED_HTML_TAGS,
 } from '../src/index.ts'
+import { rawExamples } from './generated/__generated-examples.ts'
 
 const DARK_THEME = 'dark-plus'
 

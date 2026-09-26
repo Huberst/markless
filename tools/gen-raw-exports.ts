@@ -1,5 +1,5 @@
 /**
- * Generates `generated/__generated-examples.ts` — a single record of raw
+ * Generates `page/generated/__generated-examples.ts` — a single record of raw
  * example source strings keyed by name.
  *
  * Multiple examples per file: use named markers in the source file:
@@ -74,12 +74,12 @@ const files: FileConfig[] = [
 ]
 
 /** Path of the consolidated output file, relative to the project root */
-const outputFile = './generated/__generated-examples.ts'
+const outputFile = './page/generated/__generated-examples.ts'
 
 // ---------------------------------------------------------------------------
 
 const GENERATED_BANNER = `// ⚠️  AUTO-GENERATED — do not edit by hand.
-// Run \`deno task generate-raw\` to regenerate.
+// Run \`deno task gen-example-strings\` to regenerate.
 // Source: tools/gen-raw-exports.ts
 `
 
@@ -144,8 +144,8 @@ for (const config of files) {
 }
 
 // Group named exports by source file for import statements
-// outputFile is always './generated/__generated-examples.ts'
-// so relative imports from there are '../' + path without leading './'
+// outputFile is always './page/generated/__generated-examples.ts'
+// so relative imports from there are '../../' + path without leading './'
 const importsByFile = new Map<string, string[]>()
 for (const { key, sourcePath } of entries) {
   const list = importsByFile.get(sourcePath) ?? []
@@ -155,7 +155,7 @@ for (const { key, sourcePath } of entries) {
 
 const importLines = [...importsByFile.entries()]
   .map(([srcPath, names]) => {
-    const rel = '../' + srcPath.replace(/^\.\//, '')
+    const rel = '../../' + srcPath.replace(/^\.\//, '')
     return `import { ${names.join(', ')} } from '${rel}'`
   })
   .join('\n')

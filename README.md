@@ -26,6 +26,12 @@ Add markless to a Deno project from JSR:
 deno add jsr:@huberst/markless
 ```
 
+Or install it from npm:
+
+```sh
+npm install @huberst/markless
+```
+
 ## The Mission: HTML-level scannability, pure TS
 
 The biggest hurdle was to achieve a visual distinction of HTML elements from the

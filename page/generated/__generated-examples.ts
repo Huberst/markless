@@ -1,10 +1,10 @@
 // ⚠️  AUTO-GENERATED — do not edit by hand.
-// Run `deno task generate-raw` to regenerate.
+// Run `deno task gen-example-strings` to regenerate.
 // Source: tools/gen-raw-exports.ts
 
-import { basicText, BasicComponent, UsingElements, UsingElementsNesting, ReactiveColorSelection } from '../examples/basic/basic-usage.ts'
-import { MinimalTodo } from '../examples/basic/minimal-todo.ts'
-import { SearchWithSuggestions } from '../examples/basic/main-page-example.ts'
+import { basicText, BasicComponent, UsingElements, UsingElementsNesting, ReactiveColorSelection } from '../../examples/basic/basic-usage.ts'
+import { MinimalTodo } from '../../examples/basic/minimal-todo.ts'
+import { SearchWithSuggestions } from '../../examples/basic/main-page-example.ts'
 
 export const rawExamples = {
   basicText: { raw: `export const basicText = 'Hello World!'

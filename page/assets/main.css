@@ -13,12 +13,13 @@ header {
   background-color: var(--pico-background-color);
 }
 
-.hero {
-  scroll-margin-top: 16rem;
+nav ul li {
+  padding: 0.4rem;
 }
 
-h2 {
-  scroll-margin-top: 6rem;
+h2,
+.hero {
+  scroll-margin-top: 80px;
 }
 
 .path-base {

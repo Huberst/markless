@@ -2,7 +2,7 @@
   "name": "@huberst/markless",
   "license": "MIT",
   "exports": "./src/index.ts",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Reactive UI components in plain TypeScript.",
   "compilerOptions": {
     "lib": ["dom", "es2024", "deno.ns", "deno.unstable"],
@@ -10,12 +10,10 @@
   },
   "nodeModulesDir": "auto",
   "imports": {
-    "@deno/esbuild-plugin": "jsr:@deno/esbuild-plugin@^1.2.1",
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^2.0.2",
     "@preact/signals-core": "npm:@preact/signals-core@^1.12.1",
     "@types/lodash": "npm:@types/lodash@^4.17.23",
     "esbuild": "npm:esbuild@^0.27.2",
-    "json-stringify-safe": "npm:json-stringify-safe@^5.0.1",
     "lodash": "npm:lodash@^4.17.21",
     "rxjs": "npm:rxjs@^7.8.2",
     "shiki": "npm:shiki@^4.3.1",
@@ -24,8 +22,8 @@
   },
   "tasks": {
     "vite": "deno run -N -S -R -E -W --allow-run --allow-ffi npm:vite",
+    "bundle": "deno run -A ./tools/bundle.ts",
     "gen-elements": "deno run -A ./tools/gen-static-elements.ts",
     "gen-example-strings": "deno run -A ./tools/gen-raw-exports.ts"
-  },
-  "unstable": ["bundle"]
+  }
 }

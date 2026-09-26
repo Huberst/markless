@@ -25,10 +25,10 @@ const Hero = () =>
   component(
     // biome-ignore format: custom layout needed
     (): MarkLess =>
-      section.attr('id', 'Mission').class('hero container')._([
+      section.attr("id", "Mission").class("hero container")._([
         hgroup._([
           Logo(),
-          p._('Plain TypeScript - Reactive - UI Components'),
+          p._("Plain TypeScript - Reactive - UI Components"),
         ]),
       ]),
   )
@@ -47,7 +47,6 @@ export const HomePage = () =>
         markless is a library which allows you to build UI for the
         browser, with a dev experience somewhat similar to React,
         `,
-
         span.class('highlight')._(`
             But without having to leave or enhance TypeScript-Land.
           `),
@@ -61,10 +60,11 @@ export const HomePage = () =>
       `),
       // biome-ignore format: custom layout needed
       ul._(
-        li._('_div_'),
-        li._('__div__'),
-        li._('$_div'),
-        li._('$_DIV')),
+        li._("_div_"),
+        li._("__div__"),
+        li._("$_div"),
+        li._("$_DIV"),
+      ),
       p._(
         `
         But none of these really helped scanning a component as quickly with your eyes, as you can with HTML / JSX.
@@ -102,6 +102,8 @@ export const HomePage = () =>
       Heading('Install', 'How to install'),
       p._('Add markless to a Deno project from JSR:'),
       CodeBlock('deno add jsr:@huberst/markless'),
+      p._('Or install it from npm:'),
+      CodeBlock('npm install @huberst/markless'),
 
       Heading('Benefits', 'What are the benefits of this approach?'),
       ul._(

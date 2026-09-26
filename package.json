@@ -1,0 +1,30 @@
+{
+  "name": "@huberst/markless",
+  "version": "0.1.2",
+  "description": "Reactive UI components in plain TypeScript.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/bundle.js",
+  "module": "./dist/bundle.js",
+  "types": "./dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/bundle.js",
+      "default": "./dist/bundle.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "deno task bundle",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
