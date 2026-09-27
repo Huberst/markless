@@ -2,7 +2,19 @@
 @import url('../../examples/basic/minimal-todo.css');
 
 :root {
-  --markless-logo-color-base: #c9c9c9;
+  --markless-logo-color-base: #000;
+  --markless-logo-color-accent: #01afa7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --markless-logo-color-base: #fff;
+    --markless-logo-color-accent: #4fcab0;
+  }
+}
+
+:root[data-theme='dark'] {
+  --markless-logo-color-base: #fff;
   --markless-logo-color-accent: #4fcab0;
 }
 

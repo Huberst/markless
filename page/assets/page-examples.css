@@ -11,6 +11,9 @@
   background: rgb(35 43 61);
   margin-bottom: 2rem;
 
+  color: var(--pico-color);
+  background-color: var(--pico-background-color);
+
   button {
     margin: 0 0.5rem 0.5rem 0;
   }

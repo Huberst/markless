@@ -1,7 +1,7 @@
 import { createHighlighter } from 'shiki'
 import { component, div, type MarkLess } from '../src/index.ts'
-import { rawExamples } from './generated/__generated-examples.ts'
 import { isMarklessElement } from './element-highlight.ts'
+import { rawExamples } from './generated/__generated-examples.ts'
 
 const DARK_THEME = 'dark-plus'
 
@@ -49,7 +49,10 @@ export const CodeBlockWithResult = (options: {
   return component(
     (): MarkLess => [
       CodeBlock(rawExamples[options.codeId].raw),
-      div.class('code-block-example-result')._(options.toRender),
+      div
+        .attr('data-theme', 'dark')
+        .class('code-block-example-result')
+        ._(options.toRender),
     ],
   )
 }
